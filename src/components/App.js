@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from './Header';
-import StreamList from './StreamList';
-import StreamCreate from './StreamCreate';
-import StreamEdit from './StreamEdit';
-import StreamShow from './StreamShow';
-import StreamDelete from './StreamDelete';
+import StreamList from './streams/StreamList';
+import StreamCreate from './streams/StreamCreate';
+import StreamEdit from './streams/StreamEdit';
+import StreamShow from './streams/StreamShow';
+import StreamDelete from './streams/StreamDelete';
 
 const App = () => {
   return (
