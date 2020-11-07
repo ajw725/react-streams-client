@@ -9,10 +9,6 @@ class StreamList extends React.Component {
     this.props.fetchStreams();
   }
 
-  showStream(streamId) {
-    history.push(`/streams/${streamId}`);
-  }
-
   renderStreamActions(stream) {
     if (!stream.userId || stream.userId !== this.props.userId) {
       return;
@@ -38,12 +34,11 @@ class StreamList extends React.Component {
       return (
         <div className="item" key={stream.id}>
           {this.renderStreamActions(stream)}
-          <i
-            className="large middle aligned icon camera"
-            onClick={() => this.showStream(stream.id)}
-          />
+          <i className="large middle aligned icon camera" />
           <div className="content">
-            {stream.title}
+            <Link to={`/streams/${stream.id}`} className="header">
+              {stream.title}
+            </Link>
             <div className="description">{stream.description}</div>
           </div>
         </div>
