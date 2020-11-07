@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import history from '../../history';
 import { fetchStreams } from '../../actions';
 
 class StreamList extends React.Component {
@@ -8,9 +9,8 @@ class StreamList extends React.Component {
     this.props.fetchStreams();
   }
 
-  editStream(streamId) {
-    // TODO
-    console.log('editing stream', streamId);
+  showStream(streamId) {
+    history.push(`/streams/${streamId}`);
   }
 
   renderStreamActions(stream) {
@@ -23,7 +23,12 @@ class StreamList extends React.Component {
         <Link to={`/streams/${stream.id}/edit`} className="ui button primary">
           Edit Stream
         </Link>
-        <button className="ui button negative">Delete</button>
+        <Link
+          to={`/streams/${stream.id}/delete`}
+          className="ui button negative"
+        >
+          Delete
+        </Link>
       </div>
     );
   }
@@ -33,7 +38,10 @@ class StreamList extends React.Component {
       return (
         <div className="item" key={stream.id}>
           {this.renderStreamActions(stream)}
-          <i className="large middle aligned icon camera" />
+          <i
+            className="large middle aligned icon camera"
+            onClick={() => this.showStream(stream.id)}
+          />
           <div className="content">
             {stream.title}
             <div className="description">{stream.description}</div>
