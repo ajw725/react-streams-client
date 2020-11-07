@@ -14,6 +14,8 @@ export default (initialState = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_STREAMS:
       return { ...initialState, ..._.mapKeys(payload, 'id') };
+    case FETCH_STREAM:
+      return { ...initialState, [payload.id]: payload };
     case CREATE_STREAM || FETCH_STREAM || UPDATE_STREAM:
       return { ...initialState, [payload.id]: payload };
     case DELETE_STREAM:

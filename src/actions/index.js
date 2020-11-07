@@ -1,3 +1,4 @@
+import history from '../history';
 import streamsClient from '../apis/streams';
 import {
   SIGN_IN,
@@ -38,9 +39,11 @@ export const createStream = (formData) => async (dispatch, getState) => {
     type: CREATE_STREAM,
     payload: resp.data,
   });
+  history.push('/');
 };
 
 export const fetchStream = (streamId) => async (dispatch) => {
+  console.log('fetching stream', streamId);
   const resp = await streamsClient.get(`/streams/${streamId}`);
   dispatch({
     type: FETCH_STREAM,
@@ -54,6 +57,7 @@ export const updateStream = (streamId, formData) => async (dispatch) => {
     type: UPDATE_STREAM,
     payload: resp.data,
   });
+  history.push('/');
 };
 
 export const deleteStream = (streamId) => async (dispatch) => {
